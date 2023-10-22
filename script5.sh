@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 
-
+#Remove the "group" file and create a new one
 rm -rf group
 mkdir -p group
 
-
+#Use a loop to read the certain the word to output certain clumn
 while read -r line;do
     Name=$(echo "$line" | awk -F'\t' '{print$1}')
     Time=$(echo "$line" | awk -F'\t' '{print$4}')
@@ -12,9 +12,10 @@ while read -r line;do
     Treatment=$(echo "$line" | awk -F'\t' '{print$5}')
     Num=${Name/Tco/}
 
-#echo   $Num $Time $Type $Treatment $Name
+#echo   $Num $Time $Type $Treatment $Name # Check
 
-#1      WT_UI_0
+#Use many "if" commond to divide into 15 groups according to three variables
+#1      WT_UI_0  
 if [[ "$Type" == "WT" && "$Time" == "0" && "$Treatment" == "Uninduced" ]]; then 
         cp counts_data/Tco-"$Num"_counts.txt group/Tco-"$Num"_WT_UI_0.txt
         
@@ -91,18 +92,19 @@ fi
 
 done < fastq/Tco2.fqfiles
 
-
+#Remove the "Average" dirctory and create a new one
 rm -rf Average
 mkdir -p Average
 
+#Loop through all files from the "group" dir and run 13 times in different situation
 #1 WT_UI_0
 for file in group/*_WT_UI_0.txt; do
     cut -f6 "$file" > "${file%.*}_col6.txt"
 done
 rm -rf Average/combined_WT_UI_0.txt
-paste group/*_col6.txt > Average/combined_WT_UI_0.txt
+paste group/*_WT_UI_0_col6.txt > Average/combined_WT_UI_0.txt
 rm -rf Average/merged_WT_UI_0.txt
-awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0, avg}' Average/combined_WT_UI_0.txt > Average/merged_WT_UI_0.txt
+awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0 "\t" avg}' Average/combined_WT_UI_0.txt > Average/merged_WT_UI_0.txt
 rm -rf Average/average_WT_UI_0.txt
 paste Average/merged_WT_UI_0.txt <(cut -f4 group/Tco-160_WT_UI_0.txt) <(cut -f5 group/Tco-160_WT_UI_0.txt) > Average/average_WT_UI_0.txt
 
@@ -111,9 +113,9 @@ for file in group/*_WT_UI_24.txt; do
     cut -f6 "$file" > "${file%.*}_col6.txt"
 done
 rm -rf Average/combined_WT_UI_24.txt
-paste group/*_col6.txt > Average/combined_WT_UI_24.txt
+paste group/*_WT_UI_24_col6.txt > Average/combined_WT_UI_24.txt
 rm -rf Average/merged_WT_UI_24.txt
-awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0, avg}' Average/combined_WT_UI_24.txt > Average/merged_WT_UI_24.txt
+awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0 "\t" avg}' Average/combined_WT_UI_24.txt > Average/merged_WT_UI_24.txt
 rm -rf Average/average_WT_UI_24.txt
 paste Average/merged_WT_UI_24.txt <(cut -f4 group/Tco-229_WT_UI_24.txt) <(cut -f5 group/Tco-229_WT_UI_24.txt) > Average/average_WT_UI_24.txt
 
@@ -123,9 +125,9 @@ for file in group/*_WT_UI_48.txt; do
     cut -f6 "$file" > "${file%.*}_col6.txt"
 done
 rm -rf Average/combined_WT_UI_48.txt
-paste group/*_col6.txt > Average/combined_WT_UI_48.txt
+paste group/*_WT_UI_48_col6.txt > Average/combined_WT_UI_48.txt
 rm -rf Average/merged_WT_UI_48.txt
-awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0, avg}' Average/combined_WT_UI_48.txt > Average/merged_WT_UI_48.txt
+awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0 "\t" avg}' Average/combined_WT_UI_48.txt > Average/merged_WT_UI_48.txt
 rm -rf Average/average_WT_UI_48.txt
 paste Average/merged_WT_UI_48.txt <(cut -f4 group/Tco-17_WT_UI_48.txt) <(cut -f5 group/Tco-17_WT_UI_48.txt) > Average/average_WT_UI_48.txt
 
@@ -135,9 +137,9 @@ for file in group/*_Clone1_UI_0.txt; do
     cut -f6 "$file" > "${file%.*}_col6.txt"
 done
 rm -rf Average/combined_Clone1_UI_0.txt
-paste group/*_col6.txt > Average/combined_Clone1_UI_0.txt
+paste group/*_Clone1_UI_0_col6.txt > Average/combined_Clone1_UI_0.txt
 rm -rf Average/merged_WClone1_UI_0.txt
-awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0, avg}' Average/combined_Clone1_UI_0.txt > Average/merged_Clone1_UI_0.txt
+awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0 "\t" avg}' Average/combined_Clone1_UI_0.txt > Average/merged_Clone1_UI_0.txt
 rm -rf Average/average_Clone1_UI_0.txt
 paste Average/merged_Clone1_UI_0.txt <(cut -f4 group/Tco-486_Clone1_UI_0.txt) <(cut -f5 group/Tco-486_Clone1_UI_0.txt) > Average/average_Clone1_UI_0.txt
 
@@ -147,9 +149,9 @@ for file in group/*_Clone1_UI_0.txt; do
     cut -f6 "$file" > "${file%.*}_col6.txt"
 done
 rm -rf Average/combined_Clone1_UI_0.txt
-paste group/*_col6.txt > Average/combined_Clone1_UI_0.txt
+paste group/*_Clone1_UI_0_col6.txt > Average/combined_Clone1_UI_0.txt
 rm -rf Average/merged_WClone1_UI_0.txt
-awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0, avg}' Average/combined_Clone1_UI_0.txt > Average/merged_Clone1_UI_0.txt
+awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0 "\t" avg}' Average/combined_Clone1_UI_0.txt > Average/merged_Clone1_UI_0.txt
 rm -rf Average/average_Clone1_UI_0.txt
 paste Average/merged_Clone1_UI_0.txt <(cut -f4 group/Tco-486_Clone1_UI_0.txt) <(cut -f5 group/Tco-486_Clone1_UI_0.txt) > Average/average_Clone1_UI_0.txt
 
@@ -159,9 +161,9 @@ for file in group/*_Clone1_UI_24.txt; do
     cut -f6 "$file" > "${file%.*}_col6.txt"
 done
 rm -rf Average/combined_Clone1_UI_24.txt
-paste group/*_col6.txt > Average/combined_Clone1_UI_24.txt
+paste group/*_Clone1_UI_24_col6.txt > Average/combined_Clone1_UI_24.txt
 rm -rf Average/merged_Clone1_UI_24.txt
-awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0, avg}' Average/combined_Clone1_UI_24.txt > Average/merged_Clone1_UI_24.txt
+awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0 "\t" avg}' Average/combined_Clone1_UI_24.txt > Average/merged_Clone1_UI_24.txt
 rm -rf Average/average_Clone1_UI_24.txt
 paste Average/merged_Clone1_UI_24.txt <(cut -f4 group/Tco-859_Clone1_UI_24.txt) <(cut -f5 group/Tco-859_Clone1_UI_24.txt) > Average/average_Clone1_UI_24.txt
 
@@ -171,9 +173,9 @@ for file in group/*_Clone1_UI_48.txt; do
     cut -f6 "$file" > "${file%.*}_col6.txt"
 done
 rm -rf Average/combined_Clone1_UI_48.txt
-paste group/*_col6.txt > Average/combined_Clone1_UI_48.txt
+paste group/*_Clone1_UI_48_col6.txt > Average/combined_Clone1_UI_48.txt
 rm -rf Average/merged_Clone1_UI_48.txt
-awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0, avg}' Average/combined_Clone1_UI_48.txt > Average/merged_Clone1_UI_48.txt
+awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0 "\t" avg}' Average/combined_Clone1_UI_48.txt > Average/merged_Clone1_UI_48.txt
 rm -rf Average/average_Clone1_UI_48.txt
 paste Average/merged_Clone1_UI_48.txt <(cut -f4 group/Tco-999_Clone1_UI_48.txt) <(cut -f5 group/Tco-999_Clone1_UI_48.txt) > Average/average_Clone1_UI_48.txt
 
@@ -183,9 +185,9 @@ for file in group/*_Clone1_IN_24.txt; do
     cut -f6 "$file" > "${file%.*}_col6.txt"
 done
 rm -rf Average/combined_Clone1_IN_24.txt
-paste group/*_col6.txt > Average/combined_Clone1_IN_24.txt
+paste group/*Clone1_IN_24_col6.txt > Average/combined_Clone1_IN_24.txt
 rm -rf Average/merged_Clone1_IN_24.txt
-awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0, avg}' Average/combined_Clone1_IN_24.txt > Average/merged_Clone1_IN_24.txt
+awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0 "\t" avg}' Average/combined_Clone1_IN_24.txt > Average/merged_Clone1_IN_24.txt
 rm -rf Average/average_Clone1_IN_24.txt
 paste Average/merged_Clone1_IN_24.txt <(cut -f4 group/Tco-613_Clone1_IN_24.txt) <(cut -f5 group/Tco-613_Clone1_IN_24.txt) > Average/average_Clone1_IN_24.txt
 
@@ -195,9 +197,9 @@ for file in group/*_Clone1_IN_48.txt; do
     cut -f6 "$file" > "${file%.*}_col6.txt"
 done
 rm -rf Average/combined_Clone1_IN_48.txt
-paste group/*_col6.txt > Average/combined_Clone1_IN_48.txt
+paste group/*_Clone1_IN_48_col6.txt > Average/combined_Clone1_IN_48.txt
 rm -rf Average/merged_Clone1_IN_48.txt
-awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0, avg}' Average/combined_Clone1_IN_48.txt > Average/merged_Clone1_IN_48.txt
+awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0 "\t" avg}' Average/combined_Clone1_IN_48.txt > Average/merged_Clone1_IN_48.txt
 rm -rf Average/average_Clone1_IN_48.txt
 paste Average/merged_Clone1_IN_48.txt <(cut -f4 group/Tco-28_Clone1_IN_48.txt) <(cut -f5 group/Tco-28_Clone1_IN_48.txt) > Average/average_Clone1_IN_48.txt
 
@@ -207,9 +209,9 @@ for file in group/*_Clone2_UI_0.txt; do
     cut -f6 "$file" > "${file%.*}_col6.txt"
 done
 rm -rf Average/combined_Clone2_UI_0.txt
-paste group/*_col6.txt > Average/combined_Clone2_UI_0.txt
+paste group/*_Clone2_UI_0_col6.txt > Average/combined_Clone2_UI_0.txt
 rm -rf Average/merged_Clone2_UI_0.txt
-awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0, avg}' Average/combined_Clone2_UI_0.txt > Average/merged_Clone2_UI_0.txt
+awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0 "\t" avg}' Average/combined_Clone2_UI_0.txt > Average/merged_Clone2_UI_0.txt
 rm -rf Average/average_Clone2_UI_0.txt
 paste Average/merged_Clone1_UI_0.txt <(cut -f4 group/Tco-290_Clone2_UI_0.txt) <(cut -f5 group/Tco-290_Clone2_UI_0.txt) > Average/average_Clone2_UI_0.txt
 
@@ -219,9 +221,9 @@ for file in group/*_Clone2_UI_24.txt; do
     cut -f6 "$file" > "${file%.*}_col6.txt"
 done
 rm -rf Average/combined_Clone2_UI_24.txt
-paste group/*_col6.txt > Average/combined_Clone2_UI_24.txt
+paste group/*_Clone2_UI_24_col6.txt > Average/combined_Clone2_UI_24.txt
 rm -rf Average/merged_Clone2_UI_24.txt
-awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0, avg}' Average/combined_Clone2_UI_24.txt > Average/merged_Clone2_UI_24.txt
+awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0 "\t" avg}' Average/combined_Clone2_UI_24.txt > Average/merged_Clone2_UI_24.txt
 rm -rf Average/average_Clone2_UI_24.txt
 paste Average/merged_Clone2_UI_24.txt <(cut -f4 group/Tco-392_Clone2_UI_24.txt) <(cut -f5 group/Tco-392_Clone2_UI_24.txt) > Average/average_Clone2_UI_24.txt
 
@@ -231,9 +233,9 @@ for file in group/*_Clone2_UI_48.txt; do
     cut -f6 "$file" > "${file%.*}_col6.txt"
 done
 rm -rf Average/combined_Clone2_UI_48.txt
-paste group/*_col6.txt > Average/combined_Clone2_UI_48.txt
+paste group/*_Clone2_UI_48_col6.txt > Average/combined_Clone2_UI_48.txt
 rm -rf Average/merged_Clone2_UI_48.txt
-awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0, avg}' Average/combined_Clone2_UI_48.txt > Average/merged_Clone2_UI_48.txt
+awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0 "\t" avg}' Average/combined_Clone2_UI_48.txt > Average/merged_Clone2_UI_48.txt
 rm -rf Average/average_Clone2_UI_48.txt
 paste Average/merged_Clone2_UI_48.txt <(cut -f4 group/Tco-483_Clone2_UI_48.txt) <(cut -f5 group/Tco-483_Clone2_UI_48.txt) > Average/average_Clone2_UI_48.txt
 
@@ -242,9 +244,9 @@ for file in group/*_Clone2_IN_24.txt; do
     cut -f6 "$file" > "${file%.*}_col6.txt"
 done
 rm -rf Average/combined_Clone2_IN_24.txt
-paste group/*_col6.txt > Average/combined_Clone2_IN_24.txt
+paste group/*_Clone2_IN_24_col6.txt > Average/combined_Clone2_IN_24.txt
 rm -rf Average/merged_Clone2_IN_24.txt
-awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0, avg}' Average/combined_Clone2_IN_24.txt > Average/merged_Clone2_IN_24.txt
+awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0 "\t" avg}' Average/combined_Clone2_IN_24.txt > Average/merged_Clone2_IN_24.txt
 rm -rf Average/average_Clone2_IN_24.txt
 paste Average/merged_Clone2_IN_24.txt <(cut -f4 group/Tco-503_Clone2_IN_24.txt) <(cut -f5 group/Tco-503_Clone2_IN_24.txt) > Average/average_Clone2_IN_24.txt
 
@@ -254,8 +256,14 @@ for file in group/*_Clone2_IN_48.txt; do
     cut -f6 "$file" > "${file%.*}_col6.txt"
 done
 rm -rf Average/combined_Clone2_IN_48.txt
-paste group/*_col6.txt > Average/combined_Clone2_IN_48.txt
+paste group/*_Clone2_IN_48_col6.txt > Average/combined_Clone2_IN_48.txt
 rm -rf Average/merged_Clone2_IN_48.txt
-awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0, avg}' Average/combined_Clone2_IN_48.txt > Average/merged_Clone2_IN_48.txt
+awk '{sum = 0; for (i = 1; i <= NF; i++) sum += $i; avg = sum / NF; print $0 "\t" avg}' Average/combined_Clone2_IN_48.txt > Average/merged_Clone2_IN_48.txt
 rm -rf Average/average_Clone2_IN_48.txt
 paste Average/merged_Clone2_IN_48.txt <(cut -f4 group/Tco-582_Clone2_IN_48.txt) <(cut -f5 group/Tco-582_Clone2_IN_48.txt) > Average/average_Clone2_IN_48.txt
+
+#Extract the last three columns of the file prefixed with average and overwrite it into the original file
+for file in Average/average* ;do
+        awk -F '\t' '{print $(NF-2) "\t" $(NF-1) "\t" $NF}' $file > $file.tmp
+        mv $file.tmp $file
+done
