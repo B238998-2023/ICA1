@@ -1,40 +1,43 @@
 #!/usr/bin/bash
 
-# Set the source directory where .zip files are located
+#Set a directory covering .zip files
 zipdir="fastq_check"
-
-# Set the destination directory for unzipped contents
+#Set a destination directory for unzipped contents
 unzipdir="unzipped"
 
-# Ensure the destination directory exists
+#Create the destination directory
 rm -rf "unzipped"
 mkdir -p "$unzipdir"
 
-# Loop through each .zip file in the source directory
+#Loop through each .zip file
 for zipfile in "$zipdir"/*.zip; do
     # Unzip the file into the destination directory
     unzip -q "$zipfile" -d "$unzipdir"
 done
 
+#When completed "Unzipping complete!" will be displayed on the screen
 echo "Unzipping complete!"
 
-# Set the root directory where summary.txt files are located
+#Set a directory covering summary.txt files
 summary_dir="unzipped"
+#Set a destination directory for all summary files
 all_summary="all_summary"
 
-# Initialize a variable to store the total PASS count
+#Initialize a variable to store the total PASS count
 > "$all_summary"
 
-# Use the find command to locate all summary.txt files
+#Find all summary.txt files in "summary_dir" and read their contents
 find "$summary_dir" -name "summary.txt" | while read -r file; do
-    # Use awk to extract and count "PASS" in the first column
+    #Use awk to extract and count "PASS" in the column1
     count=$(awk '$1 == "PASS" { count++ } END { print count }' "$file")
+    #Extract the base filename of the current files
     basename=$(basename "$file")
+    #Change filename named based on the parent directory mame
     filename=$(basename "$(dirname "$file")")
-    #Output the result for each file
+    #generate results in the "all_summary" directory
    echo "File: $filename, PASS Count: $count" >> "$all_summary"
     
 done
 
-
+#When completed the sentences below will be displayed in the sreen
 echo "Processing complete. Results saved in $all_summary"
