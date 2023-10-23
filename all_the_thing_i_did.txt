@@ -1,0 +1,77 @@
+commit eb5247f04aff04cb51973a59731e022186eefd39
+Author: B238998-2023 <s2569971@ed.ac.uk>
+Date:   Mon Oct 23 05:27:07 2023 +0100
+
+    Final a script
+
+commit fd3add109f2812f9ab3e9a6b1e903eae31690b87
+Author: B238998-2023 <s2569971@ed.ac.uk>
+Date:   Mon Oct 23 05:13:58 2023 +0100
+
+    I finally completedgit add script6.sh
+
+commit 6797ba9af84b5459914722a14af2419f5a8734b3
+Author: B238998-2023 <s2569971@ed.ac.uk>
+Date:   Mon Oct 23 00:23:49 2023 +0100
+
+    Script5 is sooooo longgit add script5.sh!
+
+commit d7c74bf182af0574393c9237082036bf5955f05b
+Author: B238998-2023 <s2569971@ed.ac.uk>
+Date:   Mon Oct 23 00:20:15 2023 +0100
+
+    Script4, heregit add script4.sh
+
+commit ff5711e5677459109196b5d997708ac1bd2ac52e
+Author: B238998-2023 <s2569971@ed.ac.uk>
+Date:   Mon Oct 23 00:19:09 2023 +0100
+
+    Script3 is coming!
+
+commit 6499e5413fa29f8a151b64b7d7bb67e39e7b477a
+Author: B238998-2023 <s2569971@ed.ac.uk>
+Date:   Mon Oct 23 00:18:22 2023 +0100
+
+    My second script!
+
+commit f3f6a713d22758fff584b6b1d3ade6d2d1d7ea6e
+Author: B238998-2023 <s2569971@ed.ac.uk>
+Date:   Mon Oct 23 00:17:23 2023 +0100
+
+    Here is my first script!
+
+commit 28374c5a8a46f10e10bfe8b03474e10c639bfd3c
+Author: B238998-2023 <s2569971@ed.ac.uk>
+Date:   Sun Oct 22 17:55:42 2023 +0100
+
+    Here is my script5 :)
+
+commit 97411e68d3c1957feaa3fd26dad078fabc062151
+Author: B238998-2023 <s2569971@ed.ac.uk>
+Date:   Sun Oct 22 04:30:57 2023 +0100
+
+    Here is my assessment
+
+commit 40252ef779ac43f551f5627088d991d80c8ba842
+Author: B238998-2023 <s2569971@ed.ac.uk>
+Date:   Sat Oct 21 23:53:37 2023 +0100
+
+    Here are 15 groups
+
+commit 46116714dfeac12e2c196b4e826b760c334ce7c6
+Author: B238998-2023 <s2569971@ed.ac.uk>
+Date:   Sat Oct 21 20:51:11 2023 +0100
+
+    Script4 is here!
+
+commit 52bf862dc1e05d4886f8f32b2df01786b1da91aa
+Author: B238998-2023 <s2569971@ed.ac.uk>
+Date:   Sat Oct 21 20:48:52 2023 +0100
+
+    Here is my second script, but for step3
+
+commit 66b7e0ec3a670c3941532cc3afe9cb98b1927685
+Author: B238998-2023 <s2569971@ed.ac.uk>
+Date:   Sat Oct 21 20:46:16 2023 +0100
+
+    i wrote my first script
