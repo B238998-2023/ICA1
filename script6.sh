@@ -1,8 +1,10 @@
 #!/usr/bin/bash
 
+#Remove a directory and recreate a new one
 rm -rf Comparison/Test_hypothesis
 mkdir -p Comparison/Test_hypothesis
 
+#Fold change two files and print results
 file1=Average/average_WT_UI_24.txt
 file2=Average/average_Clone1_UI_24.txt
 paste "$file1" "$file2" | awk -F "\t" ' 
